@@ -9,13 +9,17 @@ const messageRoutes=require("./routes/messageRoutes");
 const {notFound,errorHandler}=require("./middleware/errorMiddleware");
 const path = require("path");
 
+const cors = require("cors");
 dotenv.config();
 connectDB();
 const app = express();
 
 app.use(express.json());//to accept json database
+app.use(cors());
+
 
 app.get("/",(req,res)=>{
+    res.setHeader("Access-Control-Allow-Credentials","true");
     res.send("API is Running Successfully ");
 });
 
