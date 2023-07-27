@@ -8,8 +8,14 @@ const userSchema = mongoose.Schema(
     password: { type: "String", required: true },
     pic: {
       type: "String",
+      required: true,
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
    
   },
@@ -18,11 +24,11 @@ const userSchema = mongoose.Schema(
 
 userSchema.methods.matchPassword=async function (enteredPassword){
   return await bcrypt.compare(enteredPassword, this.password);
-}
+};
 
 userSchema.pre("save",async function (next){
   if(!this.isModified){
-  next()
+  next();
   }
 
   const salt = await bcrypt.genSalt(10);
