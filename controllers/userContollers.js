@@ -47,7 +47,7 @@ const registerUser = asyncHandler(async(req,res) => {
 
      }else{
         res.status(400);
-        throw new Error("Failed to create the User");
+        throw new Error("User not found");
      }
 
 });
@@ -73,4 +73,4 @@ const authUser = asyncHandler(async(req,res) => {
 });
 // /api/user?search=piyush
 
-module.exports={registerUser, authUser, allUsers};
+module.exports={allUsers, registerUser, authUser};
